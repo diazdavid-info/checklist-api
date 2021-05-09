@@ -10,6 +10,6 @@ POST http://localhost:3000/api/v1/tasks
 Content-Type: application/json
 
 {
-  "_id": 3,
+  "id": 3,
   "title": "Reading a book"
 }
