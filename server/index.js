@@ -16,14 +16,19 @@ app.get('/', (req, res, next) => {
 
 app.use((req, res, next) => {
     const message = 'Error. Router not found';
-    res.status(404);
-    res.json({
+    next({
         message,
+        statusCode: 404,
+        level: 'warn',
     });
 });
 
 app.use((err, req, res, next) => {
-    const {statusCode = 500, message} = err;
+    const {message, statusCode = 500, level = 'error'} = err;
+    const log = `${logger.header(req)} ${statusCode} ${message}`;
+
+    logger[level](log);
+
     res.status(statusCode);
     res.json({
         message,
