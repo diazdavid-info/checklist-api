@@ -1,5 +1,6 @@
 const express = require('express');
 const requestId = require('express-request-id')();
+const bodyParser = require('body-parser')
 
 const logger = require('./config/logger');
 const api = require('./api/v1')
@@ -8,6 +9,9 @@ const app = express();
 
 app.use(requestId);
 app.use(logger.requests);
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 app.use('/api', api);
 app.use('/api/v1', api);
