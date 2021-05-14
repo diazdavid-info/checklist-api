@@ -13,3 +13,40 @@ Content-Type: application/json
   "id": 3,
   "title": "Reading a book"
 }
+
+###
+
+GET http://localhost:3000/api/v1/users
+
+###
+
+GET http://localhost:3000/api/v1/users/609ed4c7e65f90453bc24c78
+
+###
+
+POST http://localhost:3000/api/v1/users
+Content-Type: application/json
+
+{
+  "firstname": "David",
+  "lastname": "Diaz",
+  "email": "diaz@example.org",
+  "password": "12345"
+}
+
+###
+
+GET http://localhost:3000/api/v1/groups
+
+###
+
+GET http://localhost:3000/api/v1/groups/609ed5df61a39f474da79695
+
+###
+
+POST http://localhost:3000/api/v1/groups
+Content-Type: application/json
+
+{
+  "title": "nombre del grupo"
+}

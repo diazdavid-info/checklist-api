@@ -2,7 +2,7 @@ const {Model, fields} = require('./model');
 const {paginationParseParams} = require('../../../utils');
 const {sortParseParams, sortCompactToStr} = require('../../../utils');
 
-exports.id = async (req, res, next) => {
+exports.id = async (req, res, next, id) => {
     try {
         const doc = await Model.findById(id);
         if(!doc) {
