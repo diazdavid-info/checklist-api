@@ -1,8 +1,12 @@
-const {Model, fields, references} = require('./model');
+const {Model, fields, references, virtuals} = require('./model');
 const {paginationParseParams} = require('../../../utils');
 const {sortParseParams, sortCompactToStr} = require('../../../utils');
+const {populateToObject} = require('../../../utils');
 
-const referencesName = Object.getOwnPropertyNames(references);
+const referencesName = [
+    ...Object.getOwnPropertyNames(references),
+    ...Object.getOwnPropertyNames(virtuals),
+];
 
 exports.id = async (req, res, next, id) => {
     const populate = referencesName.join(' ');
@@ -45,7 +49,7 @@ exports.all = async (req, res, next) => {
     const {query} = req;
     const {limit, skip, page} = paginationParseParams(query);
     const {sortBy, direction} = sortParseParams(query, fields);
-    const populate = referencesName.join(' ');
+    const populate = populateToObject(referencesName, virtuals);
 
     const all = Model.find({})
         .sort(sortCompactToStr(sortBy, direction))
