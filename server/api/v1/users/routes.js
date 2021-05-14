@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const tasksRouter = require('../tasks/routes');
 const controller = require('./controller');
 
 router.route('/')
@@ -11,5 +12,7 @@ router.route('/:id')
     .get(controller.read)
     .put(controller.update)
     .delete(controller.delete);
+
+router.use('/:userId/tasks', tasksRouter);
 
 module.exports = router;

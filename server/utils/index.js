@@ -33,8 +33,21 @@ const sortCompactToStr = (sortBy, direction) => {
     return `${dir}${sortBy}`;
 };
 
+const filterByNested = (params, referencesName) => {
+    const paramsName = Object.getOwnPropertyNames(params);
+    const populateNames = referencesName.filter(
+        (item) => !paramsName.includes(item)
+    );
+
+    return {
+        filters: params,
+        populate: populateNames.join(' '),
+    };
+}
+
 module.exports = {
     paginationParseParams,
     sortParseParams,
     sortCompactToStr,
+    filterByNested,
 };
