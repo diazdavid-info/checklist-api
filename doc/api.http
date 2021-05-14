@@ -2,7 +2,7 @@ GET http://localhost:3000/api/v1/tasks
 
 ###
 
-GET http://localhost:3000/api/v1/tasks/6098182db299fb1b36f3e8a9
+GET http://localhost:3000/api/v1/tasks/609ed7ed041eec47df2c5a94
 
 ###
 
@@ -11,7 +11,8 @@ Content-Type: application/json
 
 {
   "id": 3,
-  "title": "Reading a book"
+  "title": "Reading a book",
+  "userId": "609ed4c7e65f90453bc24c78"
 }
 
 ###
@@ -40,7 +41,7 @@ GET http://localhost:3000/api/v1/groups
 
 ###
 
-GET http://localhost:3000/api/v1/groups/609ed5df61a39f474da79695
+GET http://localhost:3000/api/v1/groups/609ed8df831eba481420d3d3
 
 ###
 
@@ -48,5 +49,6 @@ POST http://localhost:3000/api/v1/groups
 Content-Type: application/json
 
 {
-  "title": "nombre del grupo"
+  "title": "nombre del grupo",
+  "userId": "609ed4c7e65f90453bc24c78"
 }
