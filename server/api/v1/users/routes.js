@@ -2,6 +2,7 @@ const router = require('express').Router();
 const tasksRouter = require('../tasks/routes');
 const controller = require('./controller');
 const {auth, me} = require('../auth');
+const {sanitizers} = require('./model');
 
 router.param('id', controller.id);
 
@@ -9,15 +10,15 @@ router.route('/')
     .get(controller.all);
 
 router.route('/signup')
-    .post(controller.signup)
+    .post(sanitizers, controller.signup)
 
 router.route('/signin')
-    .post(controller.signin)
+    .post(sanitizers, controller.signin)
 
 router
     .route('/:id')
     .get(auth, me, controller.read)
-    .put(auth, me, controller.update)
+    .put(auth, me, sanitizers, controller.update)
     .delete(auth, me, controller.delete);
 
 router.use('/:userId/tasks', tasksRouter);

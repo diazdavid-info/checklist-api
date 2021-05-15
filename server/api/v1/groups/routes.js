@@ -1,16 +1,19 @@
 const router = require('express').Router();
 const controller = require('./controller');
 const {auth, owner} = require('../auth');
+const {sanitizers} = require('./model');
 
-router.route('/')
-    .get(auth, controller.all)
-    .post(auth, controller.create);
+router
+    .route('/')
+    .post(auth, sanitizers, controller.create)
+    .get(auth, controller.all);
 
 router.param('id', controller.id);
 
-router.route('/:id')
+router
+    .route('/:id')
     .get(auth, controller.read)
-    .put(auth, owner, controller.update)
+    .put(auth, owner, sanitizers, controller.update)
     .delete(auth, owner, controller.delete);
 
 module.exports = router;
