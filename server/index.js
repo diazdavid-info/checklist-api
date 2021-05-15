@@ -1,11 +1,20 @@
 const express = require('express');
 const requestId = require('express-request-id')();
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const logger = require('./config/logger');
-const api = require('./api/v1')
+const api = require('./api/v1');
 
 const app = express();
+
+app.use(
+    cors({
+        origin: '*',
+        method: ['GET', 'PUT', 'POST', 'DELETE'],
+        allowedHeaders: ['Accept', 'Content-Type', 'Authorization'],
+    })
+)
 
 app.use(requestId);
 app.use(logger.requests);
