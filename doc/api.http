@@ -25,13 +25,23 @@ GET http://localhost:3000/api/v1/users/609ed4c7e65f90453bc24c78
 
 ###
 
-POST http://localhost:3000/api/v1/users
+POST http://localhost:3000/api/v1/users/signup
 Content-Type: application/json
 
 {
   "firstname": "David",
   "lastname": "Diaz",
-  "email": "diaz@example.org",
+  "email": "david.diaz@example.org",
+  "password": "12345"
+}
+
+###
+
+POST http://localhost:3000/api/v1/users/signin
+Content-Type: application/json
+
+{
+  "email": "david.diaz@example.org",
   "password": "12345"
 }
 
