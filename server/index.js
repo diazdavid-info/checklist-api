@@ -2,11 +2,15 @@ const express = require('express');
 const requestId = require('express-request-id')();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const swaggerUI = require('swagger-ui-express');
 
 const logger = require('./config/logger');
 const api = require('./api/v1');
+const docs = require('./api/v1/docs');
 
 const app = express();
+
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(docs));
 
 app.use(
     cors({
